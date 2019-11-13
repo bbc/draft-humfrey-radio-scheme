@@ -1,6 +1,6 @@
-# URI Schemes for Terrestrial Radio Services
+# URI Schemes for Broadcast Radio Services
 
-This is the working area for the individual Internet-Draft, "URI Schemes for Terrestrial Radio Services".
+This is the working area for the individual Internet-Draft, "URI Schemes for Broadcast Radio Services".
 
 * [Editor's Copy](https://bbc.github.io/draft-humfrey-radio-scheme/#go.draft-humfrey-radio-scheme.html)
 * [Individual Draft](https://tools.ietf.org/html/draft-humfrey-radio-scheme)
