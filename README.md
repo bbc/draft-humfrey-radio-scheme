@@ -18,6 +18,17 @@ This requires that you have the necessary software installed.  See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md).
 
 
+## Running the ABNF tests
+
+There is a test suite to ensure that the ABNF is working correctly. It can be run using:
+
+```sh
+$ make test
+```
+
+The test suite requires node.js to be installed on your system.
+
+
 ## Contributing
 
 See the

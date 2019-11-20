@@ -1,0 +1,25 @@
+broadcast-radio-uri = amss-uri / dab-uri / drm-uri / fm-uri
+
+amss-uri    = amss-prefix amss-sid
+amss-prefix = "amss" prefix-delimiter
+amss-sid    = 6HEXDIG
+
+dab-uri    = dab-prefix gcc "."  eid "." dab-sid "." scids [ "." uatype ]
+dab-prefix = "dab" prefix-delimiter
+dab-sid    = 4HEXDIG / 8HEXDIG
+eid        = 4HEXDIG
+scids      = 1HEXDIG
+
+drm-uri    = drm-prefix drm-sid [ "." appdomain "." uatype ]
+drm-prefix = "drm" prefix-delimiter
+drm-sid    = 6HEXDIG
+appdomain  = 1HEXDIG
+
+fm-uri    = fm-prefix gcc "." pi "." frequency
+fm-prefix = "fm" prefix-delimiter
+pi        = 4HEXDIG
+frequency = 5DIGIT / "*"
+
+prefix-delimiter = ":"
+gcc    = 3HEXDIG
+uatype = 3HEXDIG
