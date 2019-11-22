@@ -2,7 +2,17 @@ const heket = require('heket')
 const fs = require('fs')
 const assert = require('assert')
 
-const abnf = fs.readFileSync('broadcast-radio-uri-schemes.abnf', 'utf8')
+var block = false
+var abnf = ''
+
+const data = fs.readFileSync('../draft-humfrey-radio-scheme.md', 'utf8')
+const lines = data.split(/\r?\n/)
+lines.forEach((line) => {
+  if (line.startsWith('~~~') && block === true) block = false
+  if (block === true) abnf += line + '\n'
+  if (line.startsWith('~~~abnf')) block = true
+})
+
 const parser = heket.createParser(abnf)
 
 // AMSS scheme
