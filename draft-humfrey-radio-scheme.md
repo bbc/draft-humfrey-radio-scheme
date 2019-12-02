@@ -21,7 +21,31 @@ normative:
     RFC8174:
 
 informative:
-
+    RFC5234:
+    "ETSI.TS.103.270":
+        title: RadioDNS Hybrid Radio; Hybrid lookup for radio services
+        target: https://www.etsi.org/deliver/etsi_ts/103200_103299/103270/01.03.01_60/ts_103270v010301p.pdf
+        date: May 2019
+    "ETSI.EN.300.401":
+        title: Radio Broadcasting Systems; Digital Audio Broadcasting (DAB) to mobile, portable and fixed receivers
+        target: https://www.etsi.org/deliver/etsi_en/300400_300499/300401/02.01.01_60/en_300401v020101p.pdf
+        date: January 2017
+    "ETSI.ES.201.980":
+        title: Digital Radio Mondiale (DRM); System Specification
+        target: https://www.etsi.org/deliver/etsi_es/201900_201999/201980/04.01.02_60/es_201980v040102p.pdf
+        date: April 2017
+    "ETSI.TS.102.386":
+        title: Digital Radio Mondiale (DRM); AM signalling system (AMSS)
+        target: https://www.etsi.org/deliver/etsi_ts/102300_102399/102386/01.02.01_60/ts_102386v010201p.pdf
+        date: March 2006
+    "ITU-R.BS.450":
+        title: Transmission standards for FM sound broadcasting at VHF
+        target: https://www.itu.int/dms_pubrec/itu-r/rec/bs/R-REC-BS.450-4-201910-I!!PDF-E.pdf
+        date: October 2019
+    "EN0.50067":
+        title: Specification of the radio data system (RDS) for VHF/FM sound broadcasting in the frequency range from 87.5 to 108.0 MHz
+        target: http://www.interactive-radio-system.com/docs/EN50067_RDS_Standard.pdf
+        date: April 1998
 
 --- abstract
 
