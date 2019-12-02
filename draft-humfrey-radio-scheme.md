@@ -12,7 +12,6 @@ author:
 
 ipr: trust200902
 category: info
-area: Applications and Real-Time
 keyword: Internet-Draft
 stand_alone: yes
 pi: [toc, tocindent, sortrefs, symrefs, strict, compact, subcompact, comments, inline]
