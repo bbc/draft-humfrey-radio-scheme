@@ -65,49 +65,95 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 document are to be interpreted as described in BCP 14 {{!RFC2119}} {{!RFC8174}}
 when, and only when, they appear in all capitals, as shown here.
 
+This document uses the Augmented Backus-Naur Form (ABNF) notation of {{RFC5234}}.
+
 # Scheme Syntax
 
 ~~~abnf
-
 broadcast-radio-uri = amss-uri / dab-uri / drm-uri / fm-uri
+prefix-delimiter = ":"
+gcc    = 3HEXDIG
+uatype = 3HEXDIG
+~~~
 
+gcc:
+ : The Global Country Code of the country of origin of the service, which is
+   calculated as described in Annex A of {{ETSI.TS.103.270}}
+
+uatype:
+ : The user application of the data component
+
+## The AM Signalling System (AMSS) Scheme
+
+AM Signalling System {{ETSI.TS.102.386}} URI scheme comprises only of the
+Service Identifier.
+
+~~~abnf
 amss-uri    = amss-prefix amss-sid
 amss-prefix = "amss" prefix-delimiter
 amss-sid    = 6HEXDIG
+~~~
 
+amss-sid:
+ : The Service Identifier of the service
+
+## The Digital Audio Broadcasting (DAB) Scheme
+
+~~~abnf
 dab-uri    = dab-prefix gcc "."  eid "." dab-sid "." scids [ "." uatype ]
 dab-prefix = "dab" prefix-delimiter
 dab-sid    = 4HEXDIG / 8HEXDIG
 eid        = 4HEXDIG
 scids      = 1HEXDIG
+~~~
 
+eid:
+ : The Ensemble Identifier of the service
+
+scids:
+ : The Service Component Identifier with the Service
+
+## The Digital Radio Mondiale (DRM) Scheme
+
+~~~abnf
 drm-uri    = drm-prefix drm-sid [ "." appdomain "." uatype ]
 drm-prefix = "drm" prefix-delimiter
 drm-sid    = 6HEXDIG
 appdomain  = 1HEXDIG
+~~~
 
+appdomain:
+ : The application domain of the data component
+
+drm-sid:
+ : The Service Identifier of the service
+
+## The VHF/FM URI Scheme
+
+~~~abnf
 fm-uri    = fm-prefix gcc "." pi "." frequency
 fm-prefix = "fm" prefix-delimiter
 pi        = 4HEXDIG
 frequency = 5DIGIT / "*"
-
-prefix-delimiter = ":"
-gcc    = 3HEXDIG
-uatype = 3HEXDIG
-
 ~~~
 
-## The AM Signalling System (AMSS) Scheme
+pi:
+ : Received RDS/RBDS Programme Identification (PI) code
 
-## The Digital Audio Broadcasting (DAB) Scheme
-
-## The Digital Radio Mondiale (DRM) Scheme
-
-## The VHF/FM URI Scheme
+frequency:
+  : Frequency on which the broadcast is received, formatted to 5 characters in
+    units of 100 KHz. Frequencies below 100 MHz MUST include a leading zero, for
+    example 90.2 MHz would be represented as "09020".
 
 # IANA Considerations
 
-There are no IANA considerations.
+This document kindly requests the following existing URI Schemes be updated
+so their references now refer to this document:
+
+* amss
+* dab
+* drm
+* fm
 
 # Security Considerations
 
