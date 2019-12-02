@@ -22,6 +22,10 @@ normative:
 
 informative:
     RFC5234:
+    "ETSI.TS.101.756":
+        title: Digital Audio Broadcasting (DAB);Registered Tables
+        target: https://www.etsi.org/deliver/etsi_ts/101700_101799/101756/02.01.01_60/ts_101756v020101p.pdf
+        date: January 2017
     "ETSI.TS.103.270":
         title: RadioDNS Hybrid Radio; Hybrid lookup for radio services
         target: https://www.etsi.org/deliver/etsi_ts/103200_103299/103270/01.03.01_60/ts_103270v010301p.pdf
@@ -81,7 +85,10 @@ gcc:
    calculated as described in Annex A of {{ETSI.TS.103.270}}
 
 uatype:
- : The user application of the data component
+ : The user application of the data component, used to identify the user
+   application which should be used to decode the data indicated by the
+   `service-id` and `scids`. List of valid user application types is defined in
+   {{ETSI.TS.101.756}} Section 5.10.
 
 ## The AM Signalling System (AMSS) Scheme
 
