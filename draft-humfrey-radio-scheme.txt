@@ -1,0 +1,280 @@
+
+
+
+
+Network Working Group                                         N. Humfrey
+Internet-Draft                          British Broadcasting Corporation
+Intended status: Informational                         December 11, 2019
+Expires: June 13, 2020
+
+
+                URI Schemes for Broadcast Radio Services
+                   draft-humfrey-radio-scheme-latest
+
+Abstract
+
+   This document describes Uniform Resource Identifier schemes which
+   enable representations of broadcast radio services.
+
+Note to Readers
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/bbc/draft-humfrey-radio-scheme [1].
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on June 13, 2020.
+
+Copyright Notice
+
+   Copyright (c) 2019 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (https://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+
+
+
+Humfrey                   Expires June 13, 2020                 [Page 1]
+
+Internet-Draft              Radio URI Schemes              December 2019
+
+
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Notational Conventions  . . . . . . . . . . . . . . . . .   2
+   2.  Scheme Syntax . . . . . . . . . . . . . . . . . . . . . . . .   2
+     2.1.  The AM Signalling System (AMSS) Scheme  . . . . . . . . .   3
+     2.2.  The Digital Audio Broadcasting (DAB) Scheme . . . . . . .   3
+     2.3.  The Digital Radio Mondiale (DRM) Scheme . . . . . . . . .   3
+     2.4.  The VHF/FM URI Scheme . . . . . . . . . . . . . . . . . .   3
+   3.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .   4
+     5.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
+
+1.  Introduction
+
+1.1.  Notational Conventions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   This document uses the Augmented Backus-Naur Form (ABNF) notation of
+   [RFC5234].
+
+2.  Scheme Syntax
+
+   broadcast-radio-uri = amss-uri / dab-uri / drm-uri / fm-uri
+   prefix-delimiter = ":"
+   gcc    = 3HEXDIG
+   uatype = 3HEXDIG
+
+   gcc:  The Global Country Code of the country of origin of the
+      service, which is calculated as described in Annex A of
+      [ETSI.TS.103.270]
+   uatype:  The user application of the data component, used to identify
+      the user application which should be used to decode the data
+      indicated by the "service-id" and "scids".  List of valid user
+      application types is defined in [ETSI.TS.101.756] Section 5.10.
+
+
+
+
+Humfrey                   Expires June 13, 2020                 [Page 2]
+
+Internet-Draft              Radio URI Schemes              December 2019
+
+
+2.1.  The AM Signalling System (AMSS) Scheme
+
+   AM Signalling System [ETSI.TS.102.386] URI scheme comprises only of
+   the Service Identifier.
+
+   amss-uri    = amss-prefix amss-sid
+   amss-prefix = "amss" prefix-delimiter
+   amss-sid    = 6HEXDIG
+
+   amss-sid:  The Service Identifier of the service
+
+2.2.  The Digital Audio Broadcasting (DAB) Scheme
+
+dab-uri    = dab-prefix gcc "."  eid "." dab-sid "." scids [ "." uatype ]
+dab-prefix = "dab" prefix-delimiter
+dab-sid    = 4HEXDIG / 8HEXDIG
+eid        = 4HEXDIG
+scids      = 1HEXDIG
+
+   eid:  The Ensemble Identifier of the service
+   scids:  The Service Component Identifier with the Service
+
+2.3.  The Digital Radio Mondiale (DRM) Scheme
+
+   drm-uri    = drm-prefix drm-sid [ "." appdomain "." uatype ]
+   drm-prefix = "drm" prefix-delimiter
+   drm-sid    = 6HEXDIG
+   appdomain  = 1HEXDIG
+
+   appdomain:  The application domain of the data component
+   drm-sid:  The Service Identifier of the service
+
+2.4.  The VHF/FM URI Scheme
+
+   fm-uri    = fm-prefix gcc "." pi "." frequency
+   fm-prefix = "fm" prefix-delimiter
+   pi        = 4HEXDIG
+   frequency = 5DIGIT / "*"
+
+   pi:  Received RDS/RBDS Programme Identification (PI) code
+   frequency:  Frequency on which the broadcast is received, formatted
+      to 5 characters in units of 100 KHz.  Frequencies below 100 MHz
+      MUST include a leading zero, for example 90.2 MHz would be
+      represented as "09020".
+
+
+
+
+
+
+
+Humfrey                   Expires June 13, 2020                 [Page 3]
+
+Internet-Draft              Radio URI Schemes              December 2019
+
+
+3.  IANA Considerations
+
+   This document kindly requests the following existing URI Schemes be
+   updated so their references now refer to this document:
+
+   o  amss
+   o  dab
+   o  drm
+   o  fm
+
+4.  Security Considerations
+
+   There are no security considerations.
+
+5.  References
+
+5.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+5.2.  Informative References
+
+   [EN0.50067]
+              "Specification of the radio data system (RDS) for VHF/FM
+              sound broadcasting in the frequency range from 87.5 to
+              108.0 MHz", April 1998, <http://www.interactive-radio-
+              system.com/docs/EN50067_RDS_Standard.pdf>.
+
+   [ETSI.EN.300.401]
+              "Radio Broadcasting Systems; Digital Audio Broadcasting
+              (DAB) to mobile, portable and fixed receivers", January
+              2017, <https://www.etsi.org/deliver/
+              etsi_en/300400_300499/300401/02.01.01_60/
+              en_300401v020101p.pdf>.
+
+   [ETSI.ES.201.980]
+              "Digital Radio Mondiale (DRM); System Specification",
+              April 2017, <https://www.etsi.org/deliver/
+              etsi_es/201900_201999/201980/04.01.02_60/
+              es_201980v040102p.pdf>.
+
+
+
+
+Humfrey                   Expires June 13, 2020                 [Page 4]
+
+Internet-Draft              Radio URI Schemes              December 2019
+
+
+   [ETSI.TS.101.756]
+              "Digital Audio Broadcasting (DAB);Registered Tables",
+              January 2017, <https://www.etsi.org/deliver/
+              etsi_ts/101700_101799/101756/02.01.01_60/
+              ts_101756v020101p.pdf>.
+
+   [ETSI.TS.102.386]
+              "Digital Radio Mondiale (DRM); AM signalling system
+              (AMSS)", March 2006, <https://www.etsi.org/deliver/
+              etsi_ts/102300_102399/102386/01.02.01_60/
+              ts_102386v010201p.pdf>.
+
+   [ETSI.TS.103.270]
+              "RadioDNS Hybrid Radio; Hybrid lookup for radio services",
+              May 2019, <https://www.etsi.org/deliver/
+              etsi_ts/103200_103299/103270/01.03.01_60/
+              ts_103270v010301p.pdf>.
+
+   [ITU-R.BS.450]
+              "Transmission standards for FM sound broadcasting at VHF",
+              October 2019, <https://www.itu.int/dms_pubrec/itu-
+              r/rec/bs/R-REC-BS.450-4-201910-I!!PDF-E.pdf>.
+
+   [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
+              Specifications: ABNF", STD 68, RFC 5234,
+              DOI 10.17487/RFC5234, January 2008,
+              <https://www.rfc-editor.org/info/rfc5234>.
+
+5.3.  URIs
+
+   [1] https://github.com/bbc/draft-humfrey-radio-scheme
+
+Author's Address
+
+   Nicholas Humfrey
+   British Broadcasting Corporation
+
+   Email: nicholas.humfrey@bbc.co.uk
+
+
+
+
+
+
+
+
+
+
+
+
+
+Humfrey                   Expires June 13, 2020                 [Page 5]
