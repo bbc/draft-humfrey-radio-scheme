@@ -77,7 +77,6 @@ This document uses the Augmented Backus-Naur Form (ABNF) notation of {{RFC5234}}
 broadcast-radio-uri = amss-uri / dab-uri / drm-uri / fm-uri
 prefix-delimiter = ":"
 gcc    = 3HEXDIG
-uatype = 3HEXDIG
 ~~~
 
 gcc:
@@ -107,9 +106,10 @@ amss-sid:
 ## The Digital Audio Broadcasting (DAB) Scheme
 
 ~~~abnf
-dab-uri    = dab-prefix gcc "."  eid "." dab-sid "." scids [ "." uatype ]
+dab-uri    = dab-prefix gcc "."  eid "." dab-sid "." scids [ "." dab-uatype ]
 dab-prefix = "dab" prefix-delimiter
 dab-sid    = 4HEXDIG / 8HEXDIG
+dab-uatype = 3HEXDIG
 eid        = 4HEXDIG
 scids      = 1HEXDIG
 ~~~
@@ -117,15 +117,19 @@ scids      = 1HEXDIG
 eid:
  : The Ensemble Identifier of the service
 
+dab-uatype:
+ : The User Application Type
+
 scids:
  : The Service Component Identifier with the Service
 
 ## The Digital Radio Mondiale (DRM) Scheme
 
 ~~~abnf
-drm-uri    = drm-prefix drm-sid [ "." appdomain "." uatype ]
+drm-uri    = drm-prefix drm-sid [ "." appdomain "." drm-uatype ]
 drm-prefix = "drm" prefix-delimiter
 drm-sid    = 6HEXDIG
+drm-uatype = 3HEXDIG
 appdomain  = 1HEXDIG
 ~~~
 
@@ -134,6 +138,9 @@ appdomain:
 
 drm-sid:
  : The Service Identifier of the service
+
+drm-uatype:
+ : The User Application Type
 
 ## The VHF/FM URI Scheme
 
