@@ -19,18 +19,20 @@ pi: [toc, tocindent, sortrefs, symrefs, strict, compact, subcompact, comments, i
 normative:
     RFC2119:
     RFC8174:
-
-informative:
-    RFC3986:
-    RFC5234:
-    "ETSI.TS.101.756":
-        title: Digital Audio Broadcasting (DAB);Registered Tables
-        target: https://www.etsi.org/deliver/etsi_ts/101700_101799/101756/02.01.01_60/ts_101756v020101p.pdf
-        date: January 2017
     "ETSI.TS.103.270":
         title: RadioDNS Hybrid Radio; Hybrid lookup for radio services
         target: https://www.etsi.org/deliver/etsi_ts/103200_103299/103270/01.03.01_60/ts_103270v010301p.pdf
         date: May 2019
+    "ETSI.TS.101.756":
+        title: Digital Audio Broadcasting (DAB);Registered Tables
+        target: https://www.etsi.org/deliver/etsi_ts/101700_101799/101756/02.01.01_60/ts_101756v020101p.pdf
+        date: January 2017
+
+informative:
+    RFC2616:
+    RFC2818:
+    RFC3986:
+    RFC5234:
     "ETSI.EN.300.401":
         title: Radio Broadcasting Systems; Digital Audio Broadcasting (DAB) to mobile, portable and fixed receivers
         target: https://www.etsi.org/deliver/etsi_en/300400_300499/300401/02.01.01_60/en_300401v020101p.pdf
@@ -39,10 +41,18 @@ informative:
         title: Digital Radio Mondiale (DRM); System Specification
         target: https://www.etsi.org/deliver/etsi_es/201900_201999/201980/04.01.02_60/es_201980v040102p.pdf
         date: April 2017
+    "ETSI.TS.101.499":
+        title: Hybrid Digital Radio (DAB, DRM, RadioDNS) SlideShow User Application Specification
+        target: https://www.etsi.org/deliver/etsi_ts/101400_101499/101499/03.01.01_60/ts_101499v030101p.pdf
+        date: January 2015
     "ETSI.TS.102.386":
         title: Digital Radio Mondiale (DRM); AM signalling system (AMSS)
         target: https://www.etsi.org/deliver/etsi_ts/102300_102399/102386/01.02.01_60/ts_102386v010201p.pdf
         date: March 2006
+    "ETSI.TS.102.818":
+        title: "Hybrid Digital Radio (DAB, DRM, RadioDNS); XML Specification for Service and  Programme Information (SPI)"
+        target: https://www.etsi.org/deliver/etsi_ts/102800_102899/102818/03.01.01_60/ts_102818v030101p.pdf
+        date: January 2015
     "ITU-R.BS.450":
         title: Transmission standards for FM sound broadcasting at VHF
         target: https://www.itu.int/dms_pubrec/itu-r/rec/bs/R-REC-BS.450-4-201910-I!!PDF-E.pdf
@@ -54,14 +64,26 @@ informative:
 
 --- abstract
 
-This document describes Uniform Resource Identifier schemes which enable
-representations of broadcast radio services.
+This document describes Uniform Resource Identifier (URI) schemes which enable
+the representation of broadcast radio stations. Such resource identifiers can be
+used for internet-capable receivers to identify stations and to enrich metadata
+presented to users, as well as metadata systems that need to exchange
+information about radio transmissions.
 
 --- middle
 
 # Introduction
 
-
+RadioDNS {{ETSI.TS.103.270}} describes a specification for internet-connected
+broadcast radio receivers able to perform DNS queries using transmission
+metadata such as FM RDS {{EN0.50067}}. Information provided within successful
+DNS queries using this information can be used to acquire the HTTP {{RFC2616}}
+or HTTPS {{RFC2818}} endpoints for the radio to request programme schedule
+information {{ETSI.TS.102.818}} or real-time information on the current playing
+programme or song {{ETSI.TS.101.499}}. These metadata sources supply information
+around radio transmission such as location, multiplexing, or transmission
+frequency which may be used by devices or by other systems exchanging to
+discover other radio broadcasts.
 
 ## Notational Conventions
 
