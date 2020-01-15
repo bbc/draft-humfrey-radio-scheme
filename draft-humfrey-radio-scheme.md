@@ -21,6 +21,7 @@ normative:
     RFC8174:
 
 informative:
+    RFC3986:
     RFC5234:
     "ETSI.TS.101.756":
         title: Digital Audio Broadcasting (DAB);Registered Tables
@@ -171,6 +172,8 @@ so their references now refer to this document:
 
 # Security Considerations
 
-There are no security considerations.
+As the various considerations within Section 7 of {{RFC3986}} do not apply to
+the use of these specific URI schemes as they do not represent network
+resources, this document does not include any specific considerations.
 
 --- back
