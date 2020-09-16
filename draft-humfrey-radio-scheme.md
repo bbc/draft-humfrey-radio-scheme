@@ -54,8 +54,11 @@ informative:
 
 --- abstract
 
-This document describes Uniform Resource Identifier schemes which enable
-representations of broadcast radio services.
+This document describes Uniform Resource Identifier (URI) schemes which enable
+the identification of radio stations based on their broadcast parameters.
+Such resource identifiers can be used for internet-capable receivers to identify
+stations and to enrich metadata presented to users, as well as metadata systems
+that need to exchange information about radio transmissions.
 
 --- middle
 
